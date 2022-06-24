@@ -1,4 +1,3 @@
-from unicodedata import category
 from rest_framework import serializers
 
 from .models import Category as CategoryModel
@@ -14,8 +13,6 @@ class CategoryModelSerializer(serializers.ModelSerializer):
 
 class ItemModelSerializer(serializers.ModelSerializer):
     category = CategoryModelSerializer()
-    
-    def category
     
     class Meta:
         model = ItemModel
