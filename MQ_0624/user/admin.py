@@ -12,5 +12,5 @@ admin.site.register(models.UserLog)
 @admin.register(models.User)
 class CustomUserAdmin(admin.ModelAdmin):
 
-    list_display = ("email", )
+    list_display = ("email",)
     # pass

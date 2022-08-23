@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('post', '0002_rename_job_type_id_jobpost_job_type_and_more'),
+        ("post", "0002_rename_job_type_id_jobpost_job_type_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='skillset',
-            name='job_posts',
-            field=models.ManyToManyField(through='post.JobPostSkillSet', to='post.JobPost'),
+            model_name="skillset",
+            name="job_posts",
+            field=models.ManyToManyField(
+                through="post.JobPostSkillSet", to="post.JobPost"
+            ),
         ),
     ]

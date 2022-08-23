@@ -7,27 +7,28 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('post', '0001_initial'),
+        ("post", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='jobpost',
-            old_name='job_type_id',
-            new_name='job_type',
+            model_name="jobpost", old_name="job_type_id", new_name="job_type",
         ),
-        migrations.RemoveField(
-            model_name='jobpost',
-            name='company_id',
-        ),
+        migrations.RemoveField(model_name="jobpost", name="company_id",),
         migrations.AddField(
-            model_name='jobpost',
-            name='company',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='post.company'),
+            model_name="jobpost",
+            name="company",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="post.company",
+            ),
         ),
         migrations.AlterField(
-            model_name='company',
-            name='business_area',
-            field=models.ManyToManyField(through='post.CompanyBusinessArea', to='post.BusinessArea'),
+            model_name="company",
+            name="business_area",
+            field=models.ManyToManyField(
+                through="post.CompanyBusinessArea", to="post.BusinessArea"
+            ),
         ),
     ]

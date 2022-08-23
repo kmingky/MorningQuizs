@@ -7,36 +7,58 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('item', '0001_initial'),
+        ("item", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ItemOrder',
+            name="ItemOrder",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('item_count', models.IntegerField()),
-                ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='item.item')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("item_count", models.IntegerField()),
+                (
+                    "item",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="item.item"
+                    ),
+                ),
             ],
-            options={
-                'db_table': 'item_orders',
-            },
+            options={"db_table": "item_orders",},
         ),
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('delivery_address', models.CharField(max_length=100)),
-                ('order_date', models.DateTimeField()),
-                ('item', models.ManyToManyField(through='item.ItemOrder', to='item.Item')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("delivery_address", models.CharField(max_length=100)),
+                ("order_date", models.DateTimeField()),
+                (
+                    "item",
+                    models.ManyToManyField(through="item.ItemOrder", to="item.Item"),
+                ),
             ],
-            options={
-                'db_table': 'orders',
-            },
+            options={"db_table": "orders",},
         ),
         migrations.AddField(
-            model_name='itemorder',
-            name='order',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='item.order'),
+            model_name="itemorder",
+            name="order",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="item.order"
+            ),
         ),
     ]

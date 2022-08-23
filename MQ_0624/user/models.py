@@ -4,11 +4,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, AbstractUser
 from django.utils.translation import gettext_lazy as _
 
+
 class UserType(models.Model):
-    user_type = models.CharField(max_length=50) # candidate, recruiter
+    user_type = models.CharField(max_length=50)  # candidate, recruiter
 
     class Meta:
-        db_table = 'user_types'
+        db_table = "user_types"
 
     def __str__(self):
         return self.user_type
@@ -18,7 +19,7 @@ class UserType(models.Model):
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
         if not email:
-            raise ValueError('Users must have an username')
+            raise ValueError("Users must have an username")
         user = self.model(
             # username=username,
             email=email,
@@ -32,7 +33,7 @@ class UserManager(BaseUserManager):
         user = self.create_user(
             # username=username,
             email=email,
-            password=password
+            password=password,
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -45,7 +46,9 @@ class User(AbstractBaseUser):
     # password = models.CharField("비밀번호", max_length=128)
     # fullname = models.CharField("이름", max_length=20)
     # join_date = models.DateTimeField("가입일", auto_now_add=True)
-    user_type = models.ForeignKey('UserType', on_delete=models.SET_NULL, null=True) # user_type + _id
+    user_type = models.ForeignKey(
+        "UserType", on_delete=models.SET_NULL, null=True
+    )  # user_type + _id
     username = models.CharField(max_length=20)
     email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=128)
@@ -60,7 +63,7 @@ class User(AbstractBaseUser):
 
     # id로 사용 할 필드 지정.
     # 로그인 시 USERNAME_FIELD에 설정 된 필드와 password가 사용된다.
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
 
     # user를 생성할 때 입력받은 필드 지정
     REQUIRED_FIELDS = []
@@ -93,5 +96,4 @@ class UserLog(models.Model):
     last_job_apply_date = models.DateField(null=True)
 
     class Meta:
-        db_table = 'user_logs'
-
+        db_table = "user_logs"

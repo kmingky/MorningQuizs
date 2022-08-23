@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kmk</title>
+</head>
+<body>
+<form method="post" action="#">
+    {% csrf_token %}
+    <div>
+        <label for="username">카테고리</label>
+        <input type="text" id="cate" name="cate">
+    </div>
+    <div>
+        <label for="password">제목</label>
+        <input type="text" id="name" name="name">
+    </div>
+    <button type="submit">클릭</button>
+</form>
+</body>
+</html>
